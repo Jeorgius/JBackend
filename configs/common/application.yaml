@@ -1,0 +1,92 @@
+jbackend:
+  oauth-service-name: auth-service
+  user-service-name: auth-service
+  inbox-service-name: inbox-service
+  registration-with-password: ${JB_REGISTRATION_WITH_PASSWORD:false}
+  swagger-enabled: ${JB_SWAGGER_ENABLED:false}
+  file-storage:
+    base-dir: ${JB_FILE_STORAGE_DIR:${java.io.tmpdir}}
+  thumbnail:
+    use-opencv: false
+    height: 480
+  security:
+    enabled: true
+    client: sourceMap1
+    secret: sourceMap2
+    grantTypes: password
+    scopes: any
+    jwt.signing.key: jp-jwt-signing-key-####
+    access.token.validity.seconds: 86400
+  kafka:
+    notifications-topic-name: notifications
+    audit-topic-name: audit
+  cache:
+    ttl:
+      # Half of year
+      global: "PT4392H"
+  monitoring:
+    selftests-switch-on: true
+    selftest-refreshing-rate: PT10M
+spring:
+  datasource:
+    hikari:
+      leak-detection-threshold: 60000
+      auto-commit: false
+      connection-test-query: select 1
+    writable:
+      pool-name: HikariPool-RW
+      leak-detection-threshold: ${spring.datasource.hikari.leak-detection-threshold}
+      auto-commit: ${spring.datasource.hikari.auto-commit}
+      connection-test-query: ${spring.datasource.hikari.connection-test-query}
+    readonly:
+      pool-name: HikariPool-RO
+      leak-detection-threshold: ${spring.datasource.hikari.leak-detection-threshold}
+      auto-commit: ${spring.datasource.hikari.auto-commit}
+      connection-test-query: ${spring.datasource.hikari.connection-test-query}
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+  cache:
+    type: redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  jpa:
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: com.jeorgius.jbackend.config.CustomPostgreSQL95Dialect
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: jbackend
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  cloud:
+    refresh:
+      enabled: false
+zuul:
+  sensitiveHeaders:
+  eureka:
+    auth-service:
+      semaphore:
+        maxSemaphores: 1000
+    gateway-service:
+      semaphore:
+        maxSemaphores: 1000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 27000
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+server:
+  tomcat:
+    max-threads: 2000
+    max-connections: 2000
+    accept-count: 1000
