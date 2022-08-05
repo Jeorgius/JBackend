@@ -1,0 +1,14 @@
+server:
+  port: 5050
+spring:
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name}
+        healthCheckInterval: 15s
+      enabled: true
+jbackend:
+  token:
+    cache:
+      expireAfterWriteSeconds: 60
+      maximumSize: 1000

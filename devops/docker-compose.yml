@@ -1,0 +1,71 @@
+version: '3.8'
+services:
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - ZOO_HEAP_SIZE=256
+    # https://github.com/bitnami/bitnami-docker-kafka
+  kafka:
+    image: 'bitnami/kafka:latest'
+    ports:
+      - '9092:9092'
+      - '9997:9997'
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_HEAP_OPTS=-Xmx256m -Xms256m
+    depends_on:
+      - zookeeper
+    restart: unless-stopped
+#   https://github.com/bitnami/bitnami-docker-consul
+  consul:
+    image: bitnami/consul:latest
+    ports:
+      - '8500:8500'
+    depends_on:
+      - zookeeper
+      - kafka
+    # https://github.com/bitnami/bitnami-docker-redis
+  redis:
+    image: docker.io/bitnami/redis:latest
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    command: /opt/bitnami/scripts/redis/run.sh --maxmemory 100mb
+    ports:
+      - '6379:6379'
+#   https://github.com/openzipkin/zipkin/tree/master/docker/examples
+#  zipkin:
+#    image: ghcr.io/openzipkin/zipkin-slim:latest
+#    container_name: zipkin
+#    # Environment settings are defined here https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md#environment-variables
+#    environment:
+#      - STORAGE_TYPE=mem
+#      - MYSQL_HOST=mysql
+#      - JAVA_OPTS=-Xms128m -Xmx128m -XX:+ExitOnOutOfMemoryError
+#    ports:
+#      - '9411:9411'
+  clickhouse01:
+    image: yandex/clickhouse-server
+    container_name: clickhouse01
+    hostname: clickhouse01
+    ports:
+      - 8123:8123
+      - 9001:9001
+    volumes:
+      - ${PWD}/clickhouse01:/etc/clickhouse-server
+    depends_on:
+      - zookeeper
+  clickhouse02:
+    image: yandex/clickhouse-server
+    container_name: clickhouse02
+    hostname: clickhouse02
+    volumes:
+      - ${PWD}/clickhouse02:/etc/clickhouse-server
+    depends_on:
+      - zookeeper
