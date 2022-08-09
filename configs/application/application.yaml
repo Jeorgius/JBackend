@@ -11,12 +11,15 @@ jbackend:
     height: 480
   security:
     enabled: true
-    client: sourceMap1
-    secret: sourceMap2
+    client: client1
+    secret: clientSecret
     grantTypes: password
     scopes: any
     jwt.signing.key: jp-jwt-signing-key-####
     access.token.validity.seconds: 86400
+    oauth2:
+      client:
+        registration
   kafka:
     notifications-topic-name: notifications
     audit-topic-name: audit
@@ -24,6 +27,8 @@ jbackend:
     ttl:
       # Half of year
       global: "PT4392H"
+      override:
+        ALTER_: "PT24H"
   monitoring:
     selftests-switch-on: true
     selftest-refreshing-rate: PT10M

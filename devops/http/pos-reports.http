@@ -1,0 +1,19 @@
+POST https://localhost:8080/pos/export/appeal-list
+OPA-ID: 725619
+ROLE: MANAGER
+POS-ACCESS-TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJnZW9yZ3kuenlrb3ZAZmlyc3RsaW5lc29mdHdhcmUuY29tIiwicnNJZCI6bnVsbCwidXNlcklkIjo0Nzc4NTg1LCJhdXRob3JpdGllcyI6WyJFWEVDVVRPUiIsIkNVUkFUT1IiLCJNQU5BR0VSIiwiQ0FMTF9DRU5URVJfT1BFUkFUT1IiLCJDT09SRElOQVRPUiIsIk1PREVSQVRPUiJdLCJjbGllbnRfaWQiOiJzb3VyY2VNYXAxIiwic3VwZXJVc2VyIjpudWxsLCJwYXRyb255bWljIjoiU2VyZ2VldmljaCIsInN5c3RlbSI6ZmFsc2UsInN1cm5hbWUiOiJaeWtvdiIsInNjb3BlIjpbImFueSJdLCJuYW1lIjoiR2VvcmdpaSIsImV4cCI6MTY1Mjc5MzE1NiwianRpIjoiZWU1OWNjNjktNmJlMi00MDMyLTg4OWUtNWVjN2E3Y2EzNWFmIiwiZW1haWwiOiJnZW9yZ3kuenlrb3ZAZmlyc3RsaW5lc29mdHdhcmUuY29tIn0.EM8KMQudf6nmV4oICHVOACsWkq55GBLkN-NNcx6fb08
+Content-Type: application/json
+
+{
+  "filters": {
+    "from": "2021-04-16",
+    "to": "2022-05-16"
+  },
+  "rows": [],
+  "columns": [
+    "head_org.id",
+    "subject_id",
+    "custom_field_dictionary.id"
+  ],
+  "export": "XLSX"
+}

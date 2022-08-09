@@ -1,0 +1,33 @@
+
+###
+# curl "http://localhost:5050/user-service/oauth/token" -H "Authorization: Basic c291cmNlTWFwMTpzb3VyY2VNYXAy" -H "Content-Type: application/x-www-form-urlencoded" --data-raw "username=med-user@test.com&password=med-password&scope=any&grant_type=password"
+POST http://localhost:5050/auth-service/oauth/token
+Authorization: Basic Y2xpZW50MTpjbGllbnRTZWNyZXQ=
+Content-Type: application/x-www-form-urlencoded
+
+username=email@somedomain.com&password=123&scope=any&grant_type=password
+
+###
+
+# curl "http://localhost:5050/user-service/oauth/token" -H "Authorization: Basic c291cmNlTWFwMTpzb3VyY2VNYXAy" -H "Content-Type: application/x-www-form-urlencoded" --data-raw "username=med-user@test.com&password=med-password&scope=any&grant_type=password"
+POST http://localhost:5050/auth-service/users/hash
+Authorization: Basic Y2xpZW50MTpjbGllbnRTZWNyZXQ=
+Content-Type: application/x-www-form-urlencoded
+
+username=email@somedomain.com&password=123&scope=any&grant_type=password
+
+###
+
+POST http://localhost:5050/auth-service/oauth/token
+Authorization: Basic Y2xpZW50MTpjbGllbnRTZWNyZXQ=
+Content-Type: application/x-www-form-urlencoded
+
+username=georgy.zykov@firstlinesoftware.com&password=1234567F&scope=any&grant_type=password
+
+###
+
+POST http://localhost:6120/oauth/token
+Authorization: Basic Y2xpZW50MTpjbGllbnRTZWNyZXQ=
+Content-Type: application/x-www-form-urlencoded
+
+username=e@somedomain.com&password=123&scope=any&grant_type=password

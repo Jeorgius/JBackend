@@ -1,0 +1,34 @@
+server:
+  port: 6120
+spring:
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name}
+        healthCheckInterval: 15s
+      enabled: true
+  datasource:
+    writable:
+      platform: postgres
+      jdbc-url: jdbc:postgresql://localhost:5432/user-db # master node if there's a choice
+      username: appeal-user # should be read-write user
+      password: appeal-password
+      maximumPoolSize: 10
+    readonly:
+      platform: postgres
+      jdbc-url: jdbc:postgresql://localhost:5432/user-db # slave node if there's a choice
+      username: ro_user01 # should be read-only
+      password: read-only
+      maximumPoolSize: 2
+  liquibase:
+    change-log: classpath:users/liquibase-changelog.yml
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace

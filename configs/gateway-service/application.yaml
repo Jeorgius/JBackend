@@ -7,6 +7,12 @@ spring:
         instanceId: ${spring.application.name}
         healthCheckInterval: 15s
       enabled: true
+    gateway:
+      routes:
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth-service/**
 jbackend:
   token:
     cache:
