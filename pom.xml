@@ -25,9 +25,9 @@
 
     <properties>
         <global.version>0.1</global.version>
-        <spring-cloud.version>2021.0.3</spring-cloud.version>
+        <spring-cloud.version>2021.0.9</spring-cloud.version>
         <spring.security.version>2.2.4.RELEASE</spring.security.version>
-        <spring.security.oauth2.autoconfigure>2.6.3</spring.security.oauth2.autoconfigure>
+        <spring.security.oauth2.autoconfigure>2.6.8</spring.security.oauth2.autoconfigure>
         <maven.compiler.source>13</maven.compiler.source>
         <maven.compiler.target>13</maven.compiler.target>
     </properties>
@@ -42,7 +42,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2021.0.3</version>
+                <version>2021.0.9</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -31,3 +31,11 @@ Authorization: Basic Y2xpZW50MTpjbGllbnRTZWNyZXQ=
 Content-Type: application/x-www-form-urlencoded
 
 username=e@somedomain.com&password=123&scope=any&grant_type=password
+
+###
+
+POST http://localhost:5050/auth-service/oauth/token
+Authorization: Basic Y2xpZW50MTpjbGllbnRTZWNyZXQ=
+Content-Type: application/x-www-form-urlencoded
+
+username=e@somedomain.com&password=123&scope=any&grant_type=password
