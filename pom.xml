@@ -28,8 +28,8 @@
         <spring-cloud.version>2021.0.9</spring-cloud.version>
         <spring.security.version>2.2.4.RELEASE</spring.security.version>
         <spring.security.oauth2.autoconfigure>2.6.8</spring.security.oauth2.autoconfigure>
-        <maven.compiler.source>13</maven.compiler.source>
-        <maven.compiler.target>13</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <dependencyManagement>

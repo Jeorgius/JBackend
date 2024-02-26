@@ -16,7 +16,7 @@
     <description>Auth server, OAuth2 and user logic</description>
 
     <properties>
-        <java.version>13</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
