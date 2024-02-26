@@ -13,18 +13,10 @@ spring:
         healthCheckInterval: 15s
       enabled: true
   datasource:
-    writable:
-      platform: postgres
-      jdbc-url: jdbc:postgresql://localhost:5432/user-db # master node if there's a choice
-      username: appeal-user # should be read-write user
-      password: appeal-password
-      maximumPoolSize: 10
-    readonly:
-      platform: postgres
-      jdbc-url: jdbc:postgresql://localhost:5432/user-db # slave node if there's a choice
-      username: ro_user01 # should be read-only
-      password: read-only
-      maximumPoolSize: 2
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:postgres}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:postgres}
   liquibase:
     change-log: classpath:users/liquibase-changelog.yml
 logging:

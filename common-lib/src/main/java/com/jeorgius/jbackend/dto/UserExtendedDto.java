@@ -1,7 +1,5 @@
 package com.jeorgius.jbackend.dto;
 
-import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
